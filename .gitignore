@@ -1,0 +1,7 @@
+# Obsidian local session/UI state — changes every time you open a note, not useful to share
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+
+# OS junk
+.DS_Store
+Thumbs.db
