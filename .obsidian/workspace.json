@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "CLAUDE.md",
+                "file": "2-wiki/index.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "CLAUDE"
+              "title": "index"
             }
           }
         ]
@@ -190,9 +190,11 @@
   },
   "active": "dd0046c33bbfba91",
   "lastOpenFiles": [
+    "CLAUDE.md",
+    "2-wiki/index.md.tmp.20848.7afc8338b8a3",
+    "CLAUDE.md.tmp.20848.75cb7170f61e",
     "2-wiki/index.md",
     "2-wiki/log.md",
-    "CLAUDE.md",
     "2-wiki/projects/archive",
     "2-wiki/projects/active",
     "README.md",
@@ -202,8 +204,6 @@
     "2-wiki/projects",
     "2-wiki/topics",
     "2-wiki",
-    "1-raw",
-    "0-capture",
     "wiki/log.md",
     "wiki/index.md",
     "wiki/建設歷程.md",
