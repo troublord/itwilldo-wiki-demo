@@ -11,6 +11,7 @@ itwilldo-wiki-demo/
 ├── CLAUDE.md
 ├── README.md
 ├── .claude/
+│   ├── scripts/            ← 檢查用腳本，由 skill 呼叫
 │   ├── skills/
 │   └── specs/
 ├── 0-capture/              ← 發想與暫存工作區
@@ -75,6 +76,16 @@ itwilldo-wiki-demo/
 整理使用者提供的內容時，可以重新組織資訊、摘要與整合，但不得捏造來源沒有表達的事實、立場或結論。
 
 若整理需要加入推論或分析，應清楚區分來源內容與新增判斷。
+
+### 修改規則本身
+
+新增或修改 `CLAUDE.md` 與 `.claude/skills/*/SKILL.md` 時，規則的寫法本身也有規格。
+
+詳細規則見：
+
+```text
+.claude/specs/claude-authoring.md
+```
 
 ## Routing
 
