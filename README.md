@@ -25,13 +25,13 @@ AI 每個 session 會自動讀取 `CLAUDE.md`，所以你不需要每次告訴�
 
 ### 1. 取得你自己的 repo
 
-點擊 Github repo 頁面上的綠色 **Use this template** 按鈕，產生一份屬於你的新 repo——沒有這裡的 commit 歷史，remote 直接指向你自己。
+點擊 Github repo 頁面上的綠色 **Use this template** 按鈕，選 **Create a new repository**（不是 Open in a codespace），產生一份屬於你的新 repo——沒有這裡的 commit 歷史，remote 直接指向你自己。知識庫放的是個人內容，建議設成 **Private**。
 
 接著把它 clone 到本機。
 
 ### 2. 啟動
 
-- **Windows**：雙擊 `launch.ps1`，或要求 AI 做成桌面捷徑
+- **Windows**：雙擊 `launch.cmd`；想做成桌面捷徑可以參考 [iThome 鐵人賽系列](https://ithelp.ithome.com.tw/users/20160279/ironman/9459)第八篇
 - **macOS / Linux**：`./launch.sh`
 
 兩支腳本做的事一樣：切到知識庫目錄，然後啟動 `claude`。你也可以自己 `cd` 進目錄直接跑 `claude`。

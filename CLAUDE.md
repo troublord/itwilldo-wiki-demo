@@ -1,4 +1,4 @@
-# itwilldo-wiki-demo
+# 個人知識庫
 
 這是一個由 LLM 協助維護的個人知識庫。
 
@@ -7,7 +7,7 @@
 ## 核心架構
 
 ```text
-itwilldo-wiki-demo/
+./
 ├── CLAUDE.md
 ├── README.md
 ├── .claude/
