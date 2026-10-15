@@ -1,0 +1,1 @@
+.nav-folder:has(> .nav-folder-title[data-path="specs"]) { display: none; }

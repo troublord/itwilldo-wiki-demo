@@ -11,20 +11,16 @@
 ├── CLAUDE.md
 ├── README.md
 ├── .claude/
-│   ├── scripts/            ← 檢查用腳本，由 skill 呼叫
-│   ├── skills/
-│   └── specs/
+│   └── skills/
+├── specs/
 ├── 0-capture/              ← 發想與暫存工作區
 ├── 1-raw/                  ← 原始來源
 │   ├── assets/             ← 圖片、PDF、Word 等附件
-│   ├── sources/            ← 正式知識來源
-│   └── 雜記/               ← 保留但暫不整理的內容
+│   └── sources/            ← 正式知識來源
 └── 2-wiki/                 ← 整理後的正式知識
     ├── index.md
     ├── topics/             ← 沒有明確終點、持續累積修訂
     └── projects/           ← 有明確終點的工作
-        ├── active/
-        └── archive/
 ```
 
 三個主要區域的角色：
@@ -33,7 +29,7 @@
 - `1-raw/`：保留原貌的來源資料，不因整理而改寫。
 - `2-wiki/`：經過整理後，可直接查詢與使用的正式知識。
 
-各類物件的詳細規格位於 `.claude/specs/`。
+各類物件的詳細規格位於 `specs/`。
 
 ## 行為邊界
 
@@ -46,7 +42,7 @@
 詳細規則見：
 
 ```text
-.claude/specs/raw-lifecycle.md
+specs/raw-lifecycle.md
 ```
 
 ### Capture 是工作區
@@ -58,7 +54,7 @@
 詳細規則見：
 
 ```text
-.claude/specs/capture.md
+specs/capture.md
 ```
 
 ### Wiki 是整理後的知識
@@ -68,7 +64,7 @@
 詳細規則見：
 
 ```text
-.claude/specs/wiki-page.md
+specs/wiki-page.md
 ```
 
 ### 不擅自改變來源意思
@@ -77,6 +73,10 @@
 
 若整理需要加入推論或分析，應清楚區分來源內容與新增判斷。
 
+### Git 衝突不自行處理
+
+Git 操作遇到衝突或無法快轉時，停下來回報，不自行 merge、rebase 或覆蓋內容。
+
 ### 修改規則本身
 
 新增或修改 `CLAUDE.md` 與 `.claude/skills/*/SKILL.md` 時，規則的寫法本身也有規格。
@@ -84,22 +84,17 @@
 詳細規則見：
 
 ```text
-.claude/specs/claude-authoring.md
+specs/claude-authoring.md
 ```
 
-## Routing
+## Routing（觸發條件 → 去處）
 
-遇到多步驟工作時，依情境使用對應 skill。
+情境需要多步驟程序時去 skill；只需要知道某個物件的規則本身、不需要跑程序時，直接去 `specs/`（wiki-page／wiki-index／raw-lifecycle／capture／claude-authoring）。
 
-| 情境                             | 使用                                     |
-| ------------------------------ | -------------------------------------- |
-| 將新的來源整理並收錄進知識庫                 | `.claude/skills/wiki-ingest/SKILL.md`  |
-| 查詢 `2-wiki/` 中的知識              | `.claude/skills/wiki-query/SKILL.md`   |
-| 將 `0-capture/` 中已成熟的內容整理進正式知識庫 | `.claude/skills/wiki-promote/SKILL.md` |
-| 將進行中的專案移至 archive              | `.claude/skills/wiki-archive/SKILL.md` |
-| 在 commit 前檢查知識庫結構              | `.claude/skills/wiki-lint/SKILL.md`    |
-| 建立 Git commit                  | `.claude/skills/wiki-commit/SKILL.md`  |
-| 從 Git 遠端同步最新內容                 | `.claude/skills/wiki-pull/SKILL.md`    |
-| 查看目前 Git 工作目錄狀態                | `.claude/skills/wiki-status/SKILL.md`  |
-
-只需要確認某類檔案應遵守的規格時，直接讀取 `.claude/specs/`，不需要啟動完整 workflow。
+| 情境 | 去處 |
+| --- | --- |
+| 使用者明確要求把新來源收進 `2-wiki/` | `.claude/skills/wiki-ingest/SKILL.md` |
+| `0-capture/` 內容確定要正式收進 wiki | `.claude/skills/wiki-ingest/SKILL.md` |
+| 詢問可能記在知識庫裡的內容，或 `/wiki-query` 明確觸發 | `.claude/skills/wiki-query/SKILL.md` |
+| 使用者要求 commit 或推上遠端 | `.claude/skills/wiki-commit/SKILL.md` |
+| 要求檢查知識庫結構 | `.claude/skills/wiki-lint/SKILL.md` |

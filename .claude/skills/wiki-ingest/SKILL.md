@@ -1,6 +1,6 @@
 ---
 name: wiki-ingest
-description: 將新來源保存、整理並正式收錄進知識庫。
+description: 將新來源或 `0-capture/` 中已成熟的內容整理並正式收錄進知識庫。
 ---
 
 # Wiki Ingest
@@ -13,6 +13,8 @@ description: 將新來源保存、整理並正式收錄進知識庫。
 
    讀取本次要收錄的內容，辨識來源包含的主要資訊。
 
+   來源可以是 `0-capture/` 的內容。同一份 capture 檔案只有部分內容成熟時，只處理使用者指定的部分，不連帶整理其他仍在發想中的內容。
+
    只有當資訊不足且會影響收錄方式時，才向使用者釐清。
 
 2. **決定歸屬**
@@ -22,7 +24,7 @@ description: 將新來源保存、整理並正式收錄進知識庫。
    依來源內容判斷：
 
    - 屬於既有 topic → 更新適合的既有頁面，或在該 topic 建立新頁面。
-   - 屬於進行中的 project → 更新或建立 `2-wiki/projects/active/<project-name>/` 下的頁面。
+   - 屬於進行中的 project → 更新或建立 `2-wiki/projects/<project-name>/` 下的頁面。
    - 沒有適合的既有歸屬 → 建立新的 topic；只有內容本身具有明確目標或終點時才建立 project。
    - 同時涉及多個領域 → 選擇最主要的歸屬，其餘透過交叉引用連結，不為相同資訊建立重複副本。
 
@@ -36,6 +38,7 @@ description: 將新來源保存、整理並正式收錄進知識庫。
    - 預計建立或修改的 wiki 頁面；
    - 原始來源預計保存的位置；
    - 必要的交叉引用；
+   - 來源是 `0-capture/` 時，收錄完成後要從 capture 移除的內容；
    - 預計整理進 wiki 的內容概要。
 
    取得使用者確認後才執行寫入。
@@ -47,7 +50,7 @@ description: 將新來源保存、整理並正式收錄進知識庫。
    讀取：
 
    ```text
-   .claude/specs/raw-lifecycle.md
+   specs/raw-lifecycle.md
    ```
 
    依規格將需要保留的原始來源存入 `1-raw/`，保留來源原貌。
@@ -57,7 +60,7 @@ description: 將新來源保存、整理並正式收錄進知識庫。
    建立或修改 `2-wiki/` 頁面前，讀取：
 
    ```text
-   .claude/specs/wiki-page.md
+   specs/wiki-page.md
    ```
 
    依其規格處理頁面格式、命名與交叉引用。
@@ -90,7 +93,7 @@ description: 將新來源保存、整理並正式收錄進知識庫。
    則讀取：
 
    ```text
-   .claude/specs/wiki-index.md
+   specs/wiki-index.md
    ```
 
    依規格同步更新 `2-wiki/index.md`。
@@ -101,3 +104,12 @@ description: 將新來源保存、整理並正式收錄進知識庫。
 
    - 承載理解來源所需資訊時，應納入內容判讀；
    - 純裝飾、版面用途或與知識內容無關時，不需要額外分析。
+
+9. **清理 capture**
+
+   來源是 `0-capture/` 時，寫入完成後，直接移除步驟 3 已確認的 capture 內容，不再另外詢問：
+
+   - 整份檔案都已處理 → 刪除該檔案。
+   - 只處理部分內容 → 只移除已處理的段落。
+
+   來源不是 `0-capture/` 時，跳過此步驟。
