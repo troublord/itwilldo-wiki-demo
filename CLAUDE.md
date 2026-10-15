@@ -98,3 +98,4 @@ specs/claude-authoring.md
 | 詢問可能記在知識庫裡的內容，或 `/wiki-query` 明確觸發 | `.claude/skills/wiki-query/SKILL.md` |
 | 使用者要求 commit 或推上遠端 | `.claude/skills/wiki-commit/SKILL.md` |
 | 要求檢查知識庫結構 | `.claude/skills/wiki-lint/SKILL.md` |
+| 使用者要求修改知識庫結構、規則或 skill | `README.md`〈維護與擴充〉 |
